@@ -5,6 +5,7 @@ const routes: Routes = [
   
   
   {path:'companies', loadChildren:()=>import('src/app/pages/companies/companies.module').then(m=>m.CompaniesModule)}
+  
 ];
 
 @NgModule({
