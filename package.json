@@ -13,6 +13,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~10.2.0",
+    "@angular/cdk": "^10.2.7",
     "@angular/common": "~10.2.0",
     "@angular/compiler": "~10.2.0",
     "@angular/core": "~10.2.0",
@@ -27,12 +28,17 @@
     "currency-formatter": "^1.5.6",
     "jquery": "^3.5.1",
     "moment": "^2.29.1",
+    "primeflex": "^2.0.0",
     "primeicons": "^4.0.0",
     "primeng": "^10.0.3",
     "rxjs": "~6.6.0",
     "toastr": "^2.1.4",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
+  },
+  "jest": {
+    "preset": "jest-preset-angular",
+    "setupTestFrameworkScriptFile": "<rootDir>/src/jest.ts"
   },
   "devDependencies": {
     "@angular-builders/jest": "^10.0.1",

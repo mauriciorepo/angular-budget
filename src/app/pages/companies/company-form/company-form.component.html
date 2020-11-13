@@ -1,1 +1,125 @@
-<p>company-form works!</p>
+<div class="container">
+  
+  
+    <div class="row">
+      <nav class="col-md-8 mb-5">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+            <li class="breadcrumb-item "><a routerLink="/companies">Empresas</a> </li>
+            <li class="breadcrumb-item active">Empresa</li>
+        </ol>
+      </nav>
+      <div class="col-md-8 order-md-1">
+        <h4 class="mb-3"> + Empresa | Novo</h4>
+       <!-- <form  novalidate="">
+-->          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="Nome">Nome(Empresa)</label>
+              <input type="text" class="form-control" formControlName="name" id="firstName" placeholder="" value="" required="">
+              <div class="invalid-feedback">
+                Valid first name is required.
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="">Contato</label>
+              <input type="text" class="form-control" formControlName="contactName" id="contactName" placeholder="" value="" required="">
+              <div class="invalid-feedback">
+                Valid last name is required.
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="stateRegistration">Inscrição Estadual </label>
+                <input type="text" class="form-control" formControlName="stateRegistration" id="stateRegistration" placeholder="">
+              
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="">Conta Banco</label>
+              <input type="text" class="form-control" formControlName="account" id="account" placeholder="" value="" required="">
+              <div class="invalid-feedback">
+                Valid last name is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="email">Email </label>
+            <input type="email" class="form-control" formControlName="email" id="email" placeholder="you@example.com">
+            <div class="invalid-feedback">
+              Please enter a valid email address for shipping updates.
+            </div>
+          
+          
+            <div class="row">
+              <div class=" col-md-4 mb-3">
+                <label for="cellphone">Celular</label>
+                <input type="text" class="form-control" id="cellphone" formControlName="cellphone" placeholder="" required="">
+                <div class="invalid-feedback">
+                  Please enter your shipping address.
+                </div>
+              </div>
+              <div class=" col-md-4 mb-3">
+              <label for="address">Telefone</label>
+              <input type="text" class="form-control" id="telephone" formControlName="telephone" placeholder="" required="">
+              <div class="invalid-feedback">
+                Please enter your shipping address.
+              </div>
+            </div>
+    
+            <div class="col-md-4 mb-3">
+              <label for="address2">Telefone 2 <span class="text-muted">(Optional)</span></label>
+              <input type="text" class="form-control" formControlName="telephone2" id="telephone2" placeholder="">
+            </div>
+          </div>
+          <hr class="mb-4">
+          <h5 class="mb-3 "> >>Endereço</h5>
+          <hr class="mb-4">  
+          
+            <div class="mb-3">
+            <label for="username">Endereço</label>
+              <input type="text" class="form-control" formControlName="localization" id="localization" placeholder="Endereço" required="">
+              <div class="invalid-feedback" >
+                Your username is required.
+              </div>
+            
+          </div>
+          <div class="row">
+            <div class="col-md-8 mb-3">
+              <label for="zip">Bairro</label>
+              <input type="text" class="form-control" id="neighborhood" formControlName="neighborhood" placeholder="" required="">
+              <div class="invalid-feedback">
+                Bairro code required.
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="state">Estado</label>
+              <select class="custom-select d-block w-100" id="StateAbbrev" formControlName="StateAbbrev"required="">
+                <option value="">PE</option>
+                <option>SP</option>
+              </select>
+              
+            </div>
+            
+          </div>
+  
+          
+          </div>
+          
+        
+        
+          
+         
+          
+          
+  
+          
+          
+          
+          <hr class="mb-4">
+          <button class="btn btn-info btn-lg btn-block" type="submit">Cadastrar</button>
+        <!--</form> -->
+      </div>
+    </div>
+  
+      </div>

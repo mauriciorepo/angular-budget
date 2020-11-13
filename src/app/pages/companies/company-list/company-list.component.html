@@ -1,44 +1,46 @@
+
 <nav class="mb-5">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-        <li class="breadcrumb-item active">Company</li>
+        <li class="breadcrumb-item active">Empresa</li>
     </ol>
 </nav>
 
 <div class="row mb-4">
 <div class="col-md">
-    <h1 class="h2 border-left pl-2">
-        Company
+    <h1 class="h1 border-left pl-2 ">
+        Empresa
     </h1>
 </div>
 <div class="col-md">
-    <a routerLink="new" class="btn btn-success float-right">
-        +Nova Categoria
+    <a routerLink="new" class="btn btn-secondary float-right">
+        + Novo
     </a>
 </div>
 </div>
-
-<table class="table table-hover">
+<div class="p-d-flex">
+<table class="table table-hover" styleClass="p-datatable-responsive-demo">
     <thead>
-        <tr class="bg-primary text-light">
+        <tr class="bg-info text-light">
             <th>Company</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th>Telefone</th>
+            <th>Contato</th>
+            
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td><strong>Casman</strong><br>
-            <small>Nome , cnpj</small>
+        <tr *ngFor="let company of companies"  >
+            <td><strong>{{company.name}}</strong><br>
+            <small>{{company.country}} , {{company.localization}}</small>
             </td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{company.telephone}}</td>
+            <td>{{company.contacName}}</td>
+           
             <td><a [routerLink]="[12,'edit']" class="btn btn-outline-info btn-sm mr-2">Editar</a>
-                <button (click)="console.log('excluir')" class="btn btn-outline-danger btn-sm">Excluir</button>
+                <button  class="btn btn-outline-danger btn-sm">Desativar</button>
             </td>
         </tr>
     </tbody>
 </table>
+</div>
