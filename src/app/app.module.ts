@@ -11,10 +11,13 @@ import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import {MenubarModule} from 'primeng/menubar';
 import {MenuItem} from 'primeng/api';
-
+import { ToastrModule  } from 'ngx-toastr';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
     
   ],
   imports: [
@@ -22,8 +25,9 @@ import {MenuItem} from 'primeng/api';
     
     BrowserAnimationsModule,
     AppRoutingModule,
+    FormsModule,
     HttpClientModule,
-    
+    ToastrModule.forRoot({positionClass: 'inline'}),
     InputTextModule,
     TableModule,
     DialogModule,

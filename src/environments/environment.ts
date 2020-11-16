@@ -4,7 +4,12 @@
 
 export const environment = {
   production: false,
-  BUDGET_API: 'http://localhost:8080/api'
+  BUDGET_API: 'http://localhost:8080',
+  OAUTH: 'http://localhost:8080/oauth/token',
+  CLIENT_ID: 'budget',
+  CLIENT_SECRET: 'ZXNAcXMyMDE1'
+  
+
 };
 
 /*

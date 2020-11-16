@@ -26,8 +26,11 @@ getById(id: number): Observable<Company>{
   return this.http.get<Company>(`${environment.BUDGET_API}/companies/${id}`)
 }
 
-editCompany(id: number, company: Company): Observable<Company>{
-  return this.http.put<Company>(`${environment.BUDGET_API}/companies/${id}`, company);
+editCompany( company: Company): Observable<Company>{
+  return this.http.put<Company>(`${environment.BUDGET_API}/companies/${company.id}`, company);
+}
+createCompany(company: Company):Observable<Company>{
+  return this.http.post<Company>(`${environment.BUDGET_API}/companies`, company)
 }
 
 deleteCompany(id: number): Observable<any>{

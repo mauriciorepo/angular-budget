@@ -9,14 +9,19 @@ import {MenubarModule} from 'primeng/menubar';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import {InputMaskModule} from 'primeng/inputmask';
+
+
 @NgModule({
   declarations: [CompanyListComponent, CompanyFormComponent],
   imports: [
+    
     CommonModule,
+    
     CompaniesRoutingModule,
     ReactiveFormsModule,
     InputTextModule,
     ButtonModule,
+    
     InputMaskModule
     
   ]

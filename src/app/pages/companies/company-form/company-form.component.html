@@ -10,19 +10,19 @@
         </ol>
       </nav>
       <div class="col-md-8 order-md-1">
-        <h4 class="mb-3"> + Empresa | Novo</h4>
-       <!-- <form  novalidate="">
--->          <div class="row">
+        <h4 class="mb-3"> {{pageTitle}}</h4>
+     <form  [formGroup]="companyForm" novalidate="" (submit)="submintForm()">
+          <div class="row">
             <div class="col-md-6 mb-3">
               <label for="Nome">Nome(Empresa)</label>
-              <input type="text" class="form-control" formControlName="name" id="firstName" placeholder="" value="" required="">
+              <input type="text" class="form-control" formControlName="name" id="name" placeholder="" value="" required="">
               <div class="invalid-feedback">
                 Valid first name is required.
               </div>
             </div>
             <div class="col-md-6 mb-3">
               <label for="">Contato</label>
-              <input type="text" class="form-control" formControlName="contactName" id="contactName" placeholder="" value="" required="">
+              <input type="text" class="form-control" formControlName="contactName" id="contactName" placeholder="" >
               <div class="invalid-feedback">
                 Valid last name is required.
               </div>
@@ -68,7 +68,7 @@
             </div>
     
             <div class="col-md-4 mb-3">
-              <label for="address2">Telefone 2 <span class="text-muted">(Optional)</span></label>
+              <label for="address2">Telefone 2 </label>
               <input type="text" class="form-control" formControlName="telephone2" id="telephone2" placeholder="">
             </div>
           </div>
@@ -93,10 +93,10 @@
               </div>
             </div>
             <div class="col-md-4 mb-3">
-              <label for="state">Estado</label>
-              <select class="custom-select d-block w-100" id="StateAbbrev" formControlName="StateAbbrev"required="">
-                <option value="">PE</option>
-                <option>SP</option>
+              <label for="stateAbbrev">Estado</label>
+              <select class="form-control" name="stateAbbrev" id="stateAbbrev" formControlName="stateAbbrev">
+                <option *ngFor="let state of typeStates" [value]="state.value">{{state.value}}-{{state.text}}</option>
+                
               </select>
               
             </div>
@@ -104,21 +104,24 @@
           </div>
   
           
-          </div>
-          
-        
+          </div>       
         
           
          
           
-          
-  
-          
+         <div *ngIf="!this.hidden" >
+          <input type="text" class="form-control"  formControlName="registrationDate" >
+          <input type="text" class="form-control"  formControlName="id" >
+            <input type="text" class="form-control"  formControlName="country" >
+
+
+
+        </div>        
           
           
           <hr class="mb-4">
-          <button class="btn btn-info btn-lg btn-block" type="submit">Cadastrar</button>
-        <!--</form> -->
+          <button [disabled]="submittingForm || companyForm.invalid" type="submit" class="btn btn-info btn-lg btn-block" >Cadastrar</button>
+        </form> 
       </div>
     </div>
   
