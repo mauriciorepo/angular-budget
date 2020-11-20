@@ -127,7 +127,7 @@ export class CompanyFormComponent implements OnInit ,AfterContentChecked{
       this.toastr.info("Processado com sucesso")
 
       this.router.navigateByUrl('companies', {skipLocationChange:true}).then(
-        ()=> this.router.navigate(['companies',company.id,'edit'])
+        ()=> this.router.navigate(['companies'/*,company.id,'edit'*/])
       )
 
     }
@@ -135,6 +135,10 @@ export class CompanyFormComponent implements OnInit ,AfterContentChecked{
     { this.toastr.error('ocorreu um erro')
     this.submittingForm=false;
 
+    if(error.status === 401){
+      this.toastr.warning('Não autorizado falha na autenticação')
+      this.router.navigate(['/login'])
+    }
     if(error.status === 422){
       this.serverErrorMessages= JSON.parse(error._body).erros;
       

@@ -13,24 +13,30 @@ export class CompanyService {
   constructor(private http: HttpClient) { }
 
 getAll():Observable<Company[]>{
-  return this.http.get<Company[]>(`${environment.BUDGET_API}/companies/all`);
+  const tokenString = localStorage.getItem('access_token');
+  const token= JSON.parse(tokenString)
+  const headers= {
+    'Authorization' : 'Bearer' + token.access_token
+
+  }
+  return this.http.get<Company[]>(`${environment.BUDGET_API}/api/companies/all`, {headers});
 }
 
 getAllPageable(page, size):Observable<any>{
   const params = new HttpParams()
   .set('page', page)
   .set('size', size)
-  return this.http.get<any>(`${environment.BUDGET_API}/companies?${params.toString}`)
+  return this.http.get<any>(`${environment.BUDGET_API}/api/companies?${params.toString}`)
 }
 getById(id: number): Observable<Company>{
-  return this.http.get<Company>(`${environment.BUDGET_API}/companies/${id}`)
+  return this.http.get<Company>(`${environment.BUDGET_API}/api/companies/${id}`)
 }
 
 editCompany( company: Company): Observable<Company>{
-  return this.http.put<Company>(`${environment.BUDGET_API}/companies/${company.id}`, company);
+  return this.http.put<Company>(`${environment.BUDGET_API}/api/companies/${company.id}`, company);
 }
 createCompany(company: Company):Observable<Company>{
-  return this.http.post<Company>(`${environment.BUDGET_API}/companies`, company)
+  return this.http.post<Company>(`${environment.BUDGET_API}/api/companies`, company)
 }
 
 deleteCompany(id: number): Observable<any>{

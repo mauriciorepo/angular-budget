@@ -1,3 +1,4 @@
+import { JsonPipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from './login.service';
@@ -19,9 +20,12 @@ password: string;
   submitLogin(){
      
   this.loginService.submitLogin(this.userName, this.password). subscribe(
-      response =>
+      response =>{
+        const access_token = JSON.stringify(response);
+        localStorage.setItem('access_token',access_token)
     this.router.navigate(['/'])
-  );
+      }
+    );
     
       
   }

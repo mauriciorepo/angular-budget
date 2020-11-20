@@ -3,17 +3,17 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
-import {MenubarModule} from 'primeng/menubar';
-import {MenuItem} from 'primeng/api';
 import { ToastrModule  } from 'ngx-toastr';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
+import { TokenInterceptor } from './pages/auth/token.interceptor';
+import { AuthInterceptorBackEndInterceptor } from './pages/auth/auth-interceptor-back-end.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,14 +27,19 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ToastrModule.forRoot({positionClass: 'inline'}),
+    ToastrModule.forRoot({timeOut: 3000,/*positionClass: 'inline'*/}),
     InputTextModule,
     TableModule,
     DialogModule,
     ButtonModule,
     
   ],
-  providers: [],
+  providers: [
+    //{provide: HTTP_INTERCEPTORS, useClass:AuthInterceptorBackEndInterceptor, multi:true},
+    {     provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi:true   },
+   
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
