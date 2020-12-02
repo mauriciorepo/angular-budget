@@ -1,0 +1,191 @@
+<div class="container">
+  
+  
+    <div class="row">
+      <nav class="col-md-8 mb-5">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+            <li class="breadcrumb-item "><a routerLink="/orderservices">Order</a> </li>
+            <li class="breadcrumb-item active">Order</li>
+        </ol>
+      </nav>
+      <div class="col-md-8 order-md-1">
+        <h4 class="mb-3"> {{pageTitle}}</h4>
+     <form  [formGroup]="orderServiceForm" novalidate="" (submit)="submitForm()">
+          <div class="row">
+            <!--Company-->
+            <div class="col-md-6 mb-3">
+              <label for="Nome">Empresas</label>
+              <select class="custom-select d-block w-100" formControlName="id_company" id="id_company">
+                  <option *ngFor="let company of listCompany "[value]="company.id" >{{company.name}}</option>
+              </select>
+              <div class="invalid-feedback">
+                Valid first name is required.
+              </div>
+            </div>
+            <!--Title-->
+            <div class="col-md-6 mb-3">
+              <label for="">Título</label>
+              <input type="text" class="form-control" formControlName="title" id="title" placeholder="" value="" required="">
+              <div class="invalid-feedback">
+                Valid last name is required.
+              </div>
+            </div>
+            <!--Order Number-->
+            <div class="col-md-6 mb-3">
+              <label for="orderNumber">Ordem de Serviço</label>
+              <input [disabled]="edit" type="text" class="form-control" formControlName="orderNumber" id="orderNumber" placeholder="">
+            
+          </div>
+                  
+         
+            <!--Status-->
+            <div class="col-md-6 mb-3">
+              <label for="">Status</label>
+             <select class="custom-select d-block w-100 " formControlName="status" id= "status">
+                <option *ngFor="let status of typeStatus" [value]="status.value">{{status.text}}</option>
+             </select>
+              
+              <div class="invalid-feedback">
+                Valid last name is required.
+              </div>
+            </div>
+           </div>
+          <div class="row">
+             <!--Description-->
+             <div class="col-md-12 mb-3">
+              <label for="">Descrição</label>
+              <input type="text" class="form-control" formControlName="description" id="description" placeholder="" value="" required="">
+              <div class="invalid-feedback">
+                Valid last name is required.
+              </div>
+            </div>
+          
+
+          </div>
+          <div class="row" *ngIf="edit">
+            <div class=" col-md-2 mb-3">
+              <label for="paid">Aval</label>
+              <div class="btn-group">
+                <label (click)="orderServiceForm.get('aval').setValue(true)" [class.active]="orderServiceForm.get('aval').value == true" class="btn btn-outline-info">
+                  Pendente
+                </label>
+                <label (click)="orderServiceForm.get('aval').setValue(false)" [class.active]="orderServiceForm.get('aval').value == false" class="btn btn-outline-info">
+                  Aprovado
+                </label>
+              </div>
+    
+              
+            </div>
+          </div>
+        
+            
+          <hr class="mb-4">
+          <h5 class="mb-3 "> >>Items do Serviço</h5>
+          <hr class="mb-4">  
+          
+          
+          <nav class="navbar"><button type="button" (click)="addItem()" class="btn btn-outline-info">+ Add Item</button> </nav>
+          <div class="table-editable">
+            
+                
+            <table class="table  table-hover centered "
+             
+            >
+              <thead>
+                <tr>
+                <th class="col-md-1">#</th>
+                <th class="col-md-5">Descrição</th>
+                <th class="col-md-1">Qt</th>
+                <th class="col-md-2">Valor</th>
+                <th class="col-md-1">Scop. T</th>
+                <!--<th class="col-md-2">Total</th>-->
+                <th class="col-md-2">Ações</th>
+
+              </tr>
+              </thead>
+
+              <tbody formArrayName="list" *ngFor="let item of orderServiceForm.get('list')['controls']; let i= index; ">
+                <tr [formGroupName]="i" >
+                  <!--NumItem -->
+                  <td class="col-md-1" role="button" tabindex="0" *ngIf="(item.get('numItem').value !== EditRowID) && name === 'numItem' " (click)="Edit1(item.get('numItem').value , 'numItem' )" (focus)="Edit1(item.get('numItem').value , 'numItem')" (keydown.space)="Edit(item.get('numItem').value)">
+                    <span  class="text">{{item.get('numItem').value}} </span>
+                  </td>
+                  <td class="col-md-1" *ngIf="item.get('numItem').value === EditRowID" (click)="Edit(item.get('numItem').value)">
+                    <span ><input type="text" formControlName="numItem" (blur)="onBlur($event)" tabindex="0"></span> 
+                  
+                  </td>
+                  <!--Description-->
+                  <td class="col-md-5" role="button" tabindex="0" *ngIf="item.get('numItem').value !== EditRowID "  (click)="Edit(item.get('numItem').value)" (focus)="Edit(item.get('numItem').value)" (keydown.space)="Edit(item.get('numItem').value)">
+                    <span  class="text">{{item.get('description').value}}</span>
+                  </td>
+                  <td class="col-md-5" *ngIf="item.get('numItem').value === EditRowID" (click)="Edit(item.get('numItem').value)">
+                    <span ><input type="text" formControlName="description" (blur)="onBlur($event)" tabindex="0"></span> 
+                    
+                  </td>
+                  <!--Quantity-->
+                  <td class="col-md-1" role="button" *ngIf="item.get('numItem').value !== EditRowID" (click)="Edit(item.get('numItem').value)" (focus)="Edit(item.get('numItem').value)" (keydown.space)="Edit(item.get('numItem').value)">
+                    <span  class="text">{{item.get('quantity').value}}</span>
+                  </td>
+                  <td class="col-md-1" *ngIf="item.get('numItem').value === EditRowID" (click)="Edit(item.get('numItem').value)">
+                    <span ><input type="text" (blur)="onBlur($event)" formControlName="quantity" tabindex="0"></span> 
+                    
+                  </td>
+                  <!--Price-->
+                  <td class="col-md-2" role="button" *ngIf="item.get('numItem').value !== EditRowID" (click)="Edit(item.get('numItem').value)" (focus)="Edit(item.get('numItem').value)" (keydown.space)="Edit(item.get('numItem').value)">
+                    <span class="text">{{item.get('price').value}}</span>
+                  </td>
+                  <td class="col-md-2" *ngIf="item.get('numItem').value === EditRowID" (click)="Edit(item.get('numItem').value)">
+                    <span  ><input type="text" (blur)="onBlur($event)" (keydown.shift.esc)="addItem()" formControlName="price" tabindex="0"></span> 
+                    
+                  </td>
+                  <!--Scope title-->
+                  <td class="col-md-1"    >
+                    <span  class="rounded "role="button" tabindex="0" *ngIf="item.get('scopeTitle').value == false" (keydown.space)="item.get('scopeTitle').setValue(true)" (click)="item.get('scopeTitle').setValue(true)"><img class="mb-4" src="assets/img/blockquote-right.svg" alt="" width="32" height="32"></span>
+                    <span *ngIf="item.get('scopeTitle').value == true" role="button" tabindex="0" (keydown.space)="item.get('scopeTitle').setValue(false)" (click)="item.get('scopeTitle').setValue(false)" class="rounded"><img class="mb-4" src="assets/img/blockquote-left.svg"   alt="" width="32" height="32"> </span> 
+                    
+                  </td>
+                  
+                  <td class="col-md-2 btn-group"  >
+                   <!-- <span *ngIf="item.id !== EditRowID" (click)="Edit(item.id)" class="text">{{item.value}}</span>
+                    <span *ngIf="item.id === EditRowID" (click)="Edit(item.id)"><input type="text" formControlName="value" readonly disabled></span> 
+                    -->
+                    <button class="btn btn-info" tabindex="0"(click)="moveItem(item, i)" (keydown.space)="addItem()"></button>
+                    <span class="badge badge-danger align-middle " role="button" tabindex="0"(click)="removeItem(i)" (keydown.space)="addItem()"><img class="" src="assets/img/x.svg" alt="" width="22" height="22"> </span>
+                    <span  role="button" tabindex="0" (keydown.space)="addItem()" class=" align-middle"><img class="" src="assets/img/arrow-down-square.svg" alt="" width="22" height="22"></span>
+                    <span  role="button" tabindex="0" (keydown.space)="addItem()" class="align-middle"> <img  src="assets/img/arrow-up-square.svg" alt="" width="22" height="22"></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+                  
+          
+         
+            </div>
+            
+                
+  
+          
+               
+        
+          
+         
+          
+         <div *ngIf="!this.hidden" >
+          <input type="text" class="form-control"  formControlName="modified" >
+          <input type="text" class="form-control"  formControlName="id" >
+            <input type="text" class="form-control"  formControlName="registrationDate" >
+
+
+
+        </div>        
+          
+          
+          <hr class="mb-4">
+          <button [disabled]="submitingForm || orderServiceForm.invalid" type="submit" class="btn btn-info btn-lg btn-block" >Cadastrar</button>
+        </form> 
+      </div>
+    </div>
+  
+      </div>
+      {{this.orderServiceForm.value | json}}

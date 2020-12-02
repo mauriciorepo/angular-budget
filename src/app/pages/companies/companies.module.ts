@@ -15,8 +15,7 @@ import {InputMaskModule} from 'primeng/inputmask';
   declarations: [CompanyListComponent, CompanyFormComponent],
   imports: [
     
-    CommonModule,
-    
+    CommonModule,    
     CompaniesRoutingModule,
     ReactiveFormsModule,
     InputTextModule,

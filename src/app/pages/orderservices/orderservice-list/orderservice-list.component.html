@@ -1,0 +1,46 @@
+<nav class="mb-5">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+        <li class="breadcrumb-item active">Ordem de Serviço</li>
+    </ol>
+</nav>
+
+<div class="row mb-4">
+<div class="col-md">
+    <h1 class="h1 border-left pl-2 ">
+        Ordem de Servico
+    </h1>
+</div>
+<div class="col-md">
+    <a routerLink="new" class="btn btn-secondary float-right">
+        + Novo
+    </a>
+</div>
+</div>
+<div class="p-d-flex">
+<table class="table table-hover" styleClass="p-datatable-responsive-demo">
+    <thead>
+        <tr class="bg-info text-light">
+            <th>Ordem</th>
+            <th>Titulo</th>
+            
+            <th>Status</th>
+            
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let order of listOrder"  >
+            <td><strong>{{order.orderNumber}}</strong><br>
+            <small>{{order.mofified}} , {{order.description}}</small>
+            </td>
+            <td>{{order.title}}</td>
+            <td>{{order.status}}</td>
+           
+            <td><a [routerLink]="[order.id,'edit']" class="btn btn-outline-info btn-sm mr-2">Editar</a>
+                <button  class="btn btn-outline-danger btn-sm">Desativar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>

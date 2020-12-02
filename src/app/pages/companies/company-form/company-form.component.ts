@@ -89,7 +89,7 @@ export class CompanyFormComponent implements OnInit ,AfterContentChecked{
       this.pageTitle ='Empresa | Novo'
      else{
      //const companyName = this.company.name || ''
-     this.pageTitle = 'Empresa | Edit: ' 
+     this.pageTitle = 'Empresa | Edit:' 
      }
     }
 
